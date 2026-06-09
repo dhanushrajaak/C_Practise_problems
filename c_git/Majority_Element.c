@@ -2,52 +2,65 @@
  * Author      : DHANUSH RAJA A K
  * Date        : 09-06-2026
  * Program     : Majority Element in an Array
- * Description : Finds and prints the maximum occurrence count
-                 of the dominant element in the array.
+ * Description : Finds the majority element in an array
+ *               using Moore's Voting Algorithm.
+ *               A majority element is an element that
+ *               appears more than n/2 times in the array.
  *********************************************************/
+
 #include <stdio.h>
-int majority_element(int *arr,int n); 
+
+int majorityElement(int *arr, int n);
 
 int main()
 {
     int n;
-    printf("enter a size of an array:\n");
-    scanf("%d",&n);
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
     int arr[n];
-    printf("enter the elements:\n");
-    for(int i =0;i<n;i++)
+
+    printf("Enter the elements:\n");
+    for(int i = 0; i < n; i++)
     {
-        scanf("%d",&arr[i]);
+        scanf("%d", &arr[i]);
     }
-    for(int i =0;i<n;i++)
+
+    printf("Array elements: ");
+    for(int i = 0; i < n; i++)
     {
-        printf("%d",arr[i]);
+        printf("%d ", arr[i]);
     }
-    printf("\n");
-    majority_element(arr,n);
+
+    int majority = majorityElement(arr, n);
+
+    printf("\nMajority Element: %d\n", majority);
+
     return 0;
 }
 
-
-
-int majority_element(int *arr,int n)
+int majorityElement(int *nums, int numsSize)
 {
-    int majority =0;
-    for(int i =0;i<n;i++)
+    int majority = nums[0];
+    int count = 1;
+
+    for(int i = 1; i < numsSize; i++)
     {
-        int count = 0; 
-        for(int j =0;j<n;j++)
+        if(count == 0)
         {
-            
-            if(arr[i]==arr[j])
-            {
-                count++;
-            }
+            majority = nums[i];
+            count = 1;
         }
-        if(count>majority)
+        else if(majority == nums[i])
         {
-            majority = count;
+            count++;
+        }
+        else
+        {
+            count--;
         }
     }
-    printf("The majority is %d",majority);
+
+    return majority;
 }
