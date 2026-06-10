@@ -23,7 +23,6 @@ int main()
     int max =0;
     for(int i =0;i<n;i++)
     {
-        //printf("%d\n",arr[i]);
         if(max<arr[i])
         {
             max=arr[i];
